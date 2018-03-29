@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+  
+     {% load static %}
+    <link rel='stylesheet' href="{% static 'css/wish_list/wish.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div class="sections">
+        <h2> Hello, {{display_name.first_name}}</h2>
+
+        <h3>Your Wish List:</h3>
+        <table class='tables'>
+            <tr>
+            <th>Item</th>
+            <th>Added By</th>
+            <th>Date Added</th>
+            <th>Action</th>
+            </tr>
+        
+                    {% for x in your_list %}
+                <tr>
+                    <td><a href="{% url 'wish_list:show' x.id %}">{{x.item}}</a></td>
+                    <td>{{x.added_by.first_name}}</td>
+                    <td>{{x.date_added}}</td>
+                    <td><form action='/wish_list/process2' name='delete' method='POST'> {% csrf_token %} <input type='hidden' name='delete' value='{{x.id}}'><input type="submit" value="Delete" class="buttons"></form></td>
+                </tr>
+                    {% endfor %}
+              
+                    {% for x in shared_item %}
+                    <tr>
+                        <td><a href="{% url 'wish_list:show' x.id %}">{{x.item}}</a></td>
+                        <td>{{x.added_by.first_name}}</td>
+                        <td>{{x.date_added}}</td>
+                        <td><form action='/wish_list/process3' name='remove' method='POST'> {% csrf_token %} <input type='hidden' name='remove' value='{{x.id}}'><input type="submit" value="Remove From My Wishlist" class="buttons"></form></td>                
+                    </tr>
+                             {% endfor %}
+        
+        </table>
+    </div>
+    <div class="sections">
+        <h3>Other User's Wish List:</h3>
+        <table class='tables'>
+        <tr>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </tr>
+                        {% for x in all_items %}
+                <tr>
+                        <td><a href="{% url 'wish_list:show' x.id %}">{{x.item}}</a></td>
+                        <td>{{x.added_by.first_name}}</td>
+                        <td>{{x.date_added}}</td>
+                        <td><form action='/wish_list/process4' name='add' method='POST'> {% csrf_token %} <input type='hidden' name='add' value='{{x.id}}'><input type="submit" value="Add to Your Wishlist" class="buttons"></form></td>
+                </tr>
+                         {% endfor %}
+        </table>
+    </div>
+    <div id='links'>
+    <a href="{% url 'wish_list:create' %}">Add a New Item</a>
+    <a href="{% url 'startpage:index' %}">Log Out</a>
+    </div>
+</body>
+</html>

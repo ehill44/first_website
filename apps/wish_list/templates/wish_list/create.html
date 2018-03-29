@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/wish_list/wish_create.css' %}" media="screen" title="no title" charset="utf-8">
+    <title>Add a New Item!</title>
+</head>
+<body>
+    <h2>Add a New Item to Your Wishlist!!!</h2>
+    <div id="form">
+    <form action='process1' method='post'>
+        {% csrf_token %}
+        <label for='item'>Item/Product:<input type='text' name='item' id="submit"></label>
+        <input type='submit' value='Add' class="buttons">
+    </form>
+    </div>
+    
+    <div id="links">
+            <a href='{% url 'wish_list:index' %}'>Home</a>
+            <a href='{% url 'startpage:index' %}'>Log Out</a>
+        </div>
+    
+</body>
+</html>

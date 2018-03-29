@@ -1,0 +1,31 @@
+*{
+    background-color: lightpink;
+    height:auto;
+    width:auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+}
+h2{
+    padding:20px;
+    margin-bottom: 20px;
+}
+#form{
+    text-align: center;
+    display: inline;
+    font-size: 14px;
+}
+#submit{
+    background-color: white;
+}
+.buttons{
+    border-radius: 20px;
+    background-color:lightblue;
+    font-size:18px;
+
+}
+#links{
+    padding: 20px;
+    display: bottom;
+    text-align: left; 
+    left-margin:0px;
+}

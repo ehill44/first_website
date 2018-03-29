@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/wish_list/wish_show.css' %}" media="screen" title="no title" charset="utf-8">
+    <title>Product</title>
+</head>
+<body>
+    <div id="sections">
+        <h2>{{current_item.item}}</h2>
+
+        <h4>Users who added this item to their wishlist:</h4>
+
+        {% for user in current_item.others.all %}
+            <p>{{user.first_name}}</p>
+        {% endfor %}
+    </div>
+
+    <div id="links">
+            <a href='{% url 'wish_list:index' %}'>Home</a>
+            <a href='{% url 'startpage:index' %}'>Log Out</a>
+        </div>
+</body>
+</html>

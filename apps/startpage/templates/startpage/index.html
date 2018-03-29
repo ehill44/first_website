@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/startpage/startpage.css' %}" media="screen" title="no title" charset="utf-8">
+    <title>Login and Register</title>
+</head>
+<body>
+    <div id="sections">
+        <h2>Register!</h2>
+        <form action='process1' method='post' id="forms">
+            {%csrf_token%}
+            <label for='first_name'>First Name: <input type='text' name='first_name' class="input_fields"></label> <br> 
+            <label for='user_name'>Username: <input type='text' name='user_name' class="input_fields"></label> <br> 
+            <label for='password'>Password: <input type='password' name='password' class="input_fields"></label> <br> 
+            <label for='confpass'>Confirm Password: <input type='password' name='confpass' class="input_fields"></label> <br>
+            <label for='date_hired'>Date Hired:<input type='date' name='date_hired' class="input_fields"></label><br>
+            <input type='submit' value='Register' id="buttons"><br>
+        </form>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    </div>
+
+    <div id="sections">
+        <h2>Login!</h2>
+        <form action='process2' method='post' id="forms">
+            {%csrf_token%}
+            <label for='user_name'>Username: <input type='text' name='user_name' class="input_fields"></label> <br>
+            <label for='password'>Password: <input type='password' name='password' class="input_fields"></label> <br>
+            <input type='submit' value='Login' id="buttons"> <br>
+        </form>
+      
+    </div>
+</body>
+</html>
